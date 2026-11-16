@@ -1,0 +1,30 @@
+{
+  "name": "dsh-latex-optimize",
+  "version": "0.1.0",
+  "description": "Reduce offscreen layout and painting in LaTeX-heavy DSH conversations.",
+  "type": "module",
+  "license": "MIT",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["index.js", "client.js", "cordis.patch.yml", "README.md", "LICENSE"],
+  "engines": {"node": ">=22", "dsh": "0.2.1-rc.2"},
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {"patch": "./cordis.patch.yml"},
+    "client": {
+      "platform": "web",
+      "inject": ["@deepseek-ai/dsh-client-ui-renderer", "@deepseek-ai/dsh-client-ui-chat"]
+    }
+  },
+  "scripts": {
+    "test": "node --test tests/unit.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "check": "node --check client.js && node --check index.js && node --test tests/unit.test.mjs",
+    "pack:local": "npm pack --ignore-scripts --pack-destination releases"
+  },
+  "devDependencies": {"playwright-core": "1.56.1", "katex": "0.16.25", "react": "18.3.1", "react-dom": "18.3.1"}
+}

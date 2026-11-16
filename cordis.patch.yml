@@ -1,0 +1,4 @@
+# Adds one client-only plugin; no built-in entries are disabled or replaced.
+- insert:
+    - id: dsh-latex-optimize
+      name: dsh-latex-optimize
